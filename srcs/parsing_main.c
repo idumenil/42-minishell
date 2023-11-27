@@ -34,6 +34,7 @@ char **init_tokens_table()
 }
 
 // Fonction pour parser la ligne de commande en tokens
+// TO DO : diviser en deux sous-fonctions pour la norme
 char **tokenise(char *cmd_line) 
 {
     char **args;
