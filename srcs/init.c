@@ -1,18 +1,32 @@
 #include "../includes/minishell.h"
 
-void	make_prompt(void)
+void	make_prompt(t_data *datas)
 {
-	if (g_data.prompt)
-		free(g_data.prompt);
-	g_data.prompt = ft_strdup("Minishell > "); // string en dur à changer
+	char	*str;
+	char	*str2;
+	char	buf[1024];
+	int		i;
+
+	if (datas->prompt)
+		free(datas->prompt);
+	getcwd(buf, 1024);
+	i = ft_strlen(buf);
+	while (buf[i] != '/')
+		i--;
+	str = ft_strjoin(RED"Minishell:"YELLOW, buf + i);
+	str2 = ft_strjoin(str, RED"$ "NC);
+	free(str);
+	datas->prompt = str2;
 }
 
-void	init_vars(char **env)
+void	init_vars(char **env, t_data *datas)
 {
-	g_data.err = 0;
-	g_data.exit = 0;
-	g_data.orig_env = env;
-	g_data.copy_env = copy_env_var(env);
-	g_data.prompt = NULL;
-	make_prompt();
+	datas->err = 0;
+	datas->exit = 0;
+	datas->cmd_ret = 0;
+	datas->exit_status = 0;
+	datas->orig_env = env;
+	datas->copy_env = copy_env_var(env);
+	datas->prompt = NULL;
+	make_prompt(datas);
 }

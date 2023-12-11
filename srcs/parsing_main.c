@@ -1,78 +1,108 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   parsing_main.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: rloussig <rloussig@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/12/01 17:19:19 by rloussig          #+#    #+#             */
+/*   Updated: 2023/12/06 12:20:50 by rloussig         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../includes/minishell.h"
 
-#include <stdbool.h>
-
-#define BUF_CMD_LINE 1024
-
-//fonctions utils pour safe malloc
-void	*safe_malloc(size_t bytes)
+void	prt_arg(char **args)
 {
-	void	*res;
-	
-	res = malloc(bytes);
-	if (!res)
-		return (NULL);
-	return (res);
+	int	i;
+
+	i = 0;
+	printf("args: ");
+	while (args[i])
+	{
+		printf("%d[%s] ", i, args[i]);
+		i++;
+	}
+	printf("\n\n");
 }
 
-// Fonction pour allouer et initialiser le tableau de tokens
-// TO DO (optional) affiner l'allocation mémoire, remplacer BUF_CMD_LINE par la taille exacte de la commande
-char **init_tokens_table()
+char	**join_double_redirs(char **args)
 {
-    char **args;
-    
-    args = safe_malloc(sizeof(char *) * BUF_CMD_LINE);
-    args[0] = safe_malloc(sizeof(char) * (BUF_CMD_LINE + 1));
-    
-    if (!args[0])
-    {
-        free(args);
-        return NULL;
-    }
+	int		i;
+	char	*tmp;
 
-    return args;
+	i = -1;
+	while (args[++i + 1])
+	{
+		if ((args[i][0] == '>' || args[i][0] == '<') &&
+			args[i][0] == args[i + 1][0])
+		{
+			tmp = malloc(sizeof(char) * 3);
+			tmp[0] = args[i][0];
+			tmp[1] = args[i][0];
+			tmp[2] = '\0';
+			free(args[i]);
+			rm_arr_line(args, i + 1);
+			args[i] = tmp;
+		}
+	}
+	return (args);
 }
 
-// Fonction pour parser la ligne de commande en tokens
-// TO DO : diviser en deux sous-fonctions pour la norme
-char **tokenise(char *cmd_line) 
+int	parse(char *cmd_line, t_data *datas)
 {
-    char **args;
-    bool is_quote;
-    int token_id, carac_nb, i;
-    
-    args = init_tokens_table(sizeof(char *) * BUF_CMD_LINE);
-    token_id = 0;
-    carac_nb = 0;
-    i = 0;
-    is_quote = false;
-    while (cmd_line[i]) 
-    {
-        if (cmd_line[i] == '\'' || cmd_line[i] == '\"')
-            is_quote = !is_quote;
-        else if (isspace(cmd_line[i]) && !is_quote) 
-        {
-            args[token_id][carac_nb] = '\0';
-            carac_nb = 0;
-            token_id++;
-            args[token_id] = safe_malloc(sizeof(char) * (BUF_CMD_LINE + 1));
-        }
-        else
-            args[token_id][carac_nb++] = cmd_line[i];
-        i++;
-    }
-    args[token_id][carac_nb] = '\0';
-    args[token_id + 1] = NULL;
-    if (args[0][0] == '\0') {
-        free(args[0]);
-        args[0] = NULL;
-    }
-    return args;
+	char	**args;
+	int		i;
+
+	if (check_quotes_closing(cmd_line) < 0)
+		return (-1);
+	args = malloc(sizeof(char *) * 1);
+	args[0] = NULL;
+	args = analyse_quotes(args, cmd_line);
+	printf("Quotes splitted\n");
+	prt_arg(args);
+	args = replace_vars(args, datas);
+	printf("$s replaced\n");
+	prt_arg(args);
+	args = split_cmds(args);
+	// printf("Cmds splitted\n");
+	// prt_arg(args);
+	args = trim_all_str(args);
+	// printf("Trimmed\n");
+	// prt_arg(args);
+	args = split_spaces(args);
+	// printf("Space splitted\n");
+	// prt_arg(args);
+	args = join_double_redirs(args);
+	// printf("Double << >>\n");
+	// prt_arg(args);
+	args = check_elements_to_join(args);
+	// printf("Quotes joined\n");
+	// prt_arg(args);
+	args = rm_empty_elements(args);
+	// printf("Empty removed\n");
+	// prt_arg(args);
+	create_output(args, datas);
+	remove_quotes(datas);
+	i = -1;
+	while (args[++i])
+		free(args[i]);
+	free(args);
+	return (0);
 }
 
-char **parse(char *cmd_line)
+void	clear_data_args_arr(t_data *datas)
 {
-	tokenise(cmd_line);
-	//to do : syntax analysis
-}
+	int	i;
+	int	j;
 
+	i = -1;
+	while (datas->args_arr[++i])
+	{
+		j = -1;
+		while (datas->args_arr[i][++j])
+			free(datas->args_arr[i][j]);
+		free(datas->args_arr[i]);
+	}
+	free(datas->args_arr);
+}

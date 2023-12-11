@@ -5,17 +5,13 @@ static int	ft_nb_words(char const *s, char c)
 	int	i;
 	int	nb_words;
 	int	next_word;
-	bool	in_quote;
 
 	nb_words = 0;
 	next_word = 1;
 	i = 0;
-	in_quote = false;
 	while (s[i])
 	{
-		if (s[i] == '"')
-			in_quote = !in_quote;
-		else if (s[i] != c && next_word && !in_quote)
+		if (s[i] != c && next_word)
 		{
 			nb_words++;
 			next_word = 0;
@@ -30,20 +26,10 @@ static int	ft_nb_words(char const *s, char c)
 static int	ft_len_word(char const *s, char c, int start)
 {
 	int	len;
-	bool	in_quote;
 
 	len = 0;
-	if (s[0] == '"')
-		in_quote = true;
-	in_quote = false;
-	if (!in_quote)
-		while (s[start + len] && s[start + len] != c)
-			len++;
-	else if (in_quote)
-	{
-		while (s[start + len] && s[start + len] != '"')
-			len++;
-	}
+	while (s[start + len] && s[start + len] != c)
+		len++;
 	return (len);
 }
 
@@ -57,7 +43,7 @@ static char	**ft_free_all(char **tb, int tb_size)
 		free(tb[i]);
 		i++;
 	}
-	free(tb);
+	// free(tb);
 	return (tb);
 }
 
