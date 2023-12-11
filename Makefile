@@ -3,22 +3,32 @@ NAME := minishell
 SRCS_PATH := srcs
 OBJS_PATH := objs
 
-SRCS_FILES = 	main.c			\
-				init.c				\
-				my_execve.c			\
-				my_export.c				\
-				builtin_launcher.c	\
-				builtin_echo.c		\
-				builtin_cd.c		\
-				builtin_pwd.c 		\
-				parsing_main.c		\
-				libft_utils_1.c		\
-				libft_utils_2.c		\
-				libft_utils_3.c		\
-				libft_utils_4.c		\
-				env_utils.c			\
-				free_utils.c			\
-				exit.c
+SRCS_FILES = 	main.c						\
+				init.c						\
+				my_execve.c					\
+				my_export.c					\
+				my_unset.c					\
+				builtin_launcher.c			\
+				builtin_echo.c				\
+				builtin_cd.c				\
+				builtin_pwd.c 				\
+				parsing_main.c				\
+				libft_utils_1.c				\
+				libft_utils_2.c				\
+				libft_utils_3.c				\
+				libft_utils_4.c				\
+				libft_utils_5.c				\
+				env_utils.c					\
+				free_utils.c				\
+				exit.c						\
+				parsing_arrays_utils.c		\
+				parsing_quotes.c			\
+				parsing_env_vars.c			\
+				parsing_is_char.c			\
+				parsing_str_utils.c			\
+				parsing_join_quotes.c		\
+				parsing_splits.c			\
+				parsing_output.c
 
 
 
@@ -37,7 +47,9 @@ DEPS = ./includes/minishell.h
 all:$(OBJS_PATH) $(NAME)
 
 $(NAME):$(OBJS) $(DEPS)
-	$(CC) $(CFLAGS) $(OBJS) -o $(NAME) $(LREADLINE)
+	@ echo "Compilation Minishell.."
+	@ $(CC) $(CFLAGS) $(OBJS) -o $(NAME) $(LREADLINE)
+	@ echo "..done !"
 
 $(OBJS_PATH)/%.o:$(SRCS_PATH)/%.c $(DEPS)
 	$(CC) $(CFLAGS) -c $< -o $@
