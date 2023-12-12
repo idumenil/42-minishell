@@ -47,8 +47,11 @@ int	my_execve(char **args, t_data *datas)
 		printf("error while forking");
 		return (1);
 	}
-	else if (pid == 0)
+	if (pid == 0) 
+	{
 		execve(prog_path, args, NULL);
+		exit_minishell(datas);
+	}
 	else
 	{
 		//int status;
