@@ -1,3 +1,15 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: fatdiall <marvin@42.fr>                    +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2023/12/20 16:47:02 by fatdiall          #+#    #+#              #
+#    Updated: 2023/12/20 16:47:07 by fatdiall         ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
 NAME := minishell
 
 SRCS_PATH := srcs
@@ -28,6 +40,10 @@ SRCS_FILES = 	main.c						\
 				parsing_str_utils.c			\
 				parsing_join_quotes.c		\
 				parsing_splits.c			\
+				utils_is_char.c				\
+				redirect.c					\
+				get_next_line.c				\
+				main_tools.c				\
 				parsing_output.c
 
 
