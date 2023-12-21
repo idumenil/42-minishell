@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_str_utils.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: raphaelloussignian <raphaelloussignian@    +#+  +:+       +#+        */
+/*   By: fatoudiallo <fatoudiallo@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/01 17:19:09 by rloussig          #+#    #+#             */
-/*   Updated: 2023/12/04 11:29:45 by raphaellous      ###   ########.fr       */
+/*   Created: 2023/12/13 19:10:27 by fatoudiallo       #+#    #+#             */
+/*   Updated: 2023/12/13 19:10:28 by fatoudiallo      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_splits.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rloussig <rloussig@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fatoudiallo <fatoudiallo@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/01 17:22:04 by rloussig          #+#    #+#             */
-/*   Updated: 2023/12/01 17:22:10 by rloussig         ###   ########.fr       */
+/*   Created: 2023/12/13 19:10:19 by fatoudiallo       #+#    #+#             */
+/*   Updated: 2023/12/13 19:10:20 by fatoudiallo      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

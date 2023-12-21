@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_join_quotes.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: raphaelloussignian <raphaelloussignian@    +#+  +:+       +#+        */
+/*   By: fatoudiallo <fatoudiallo@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/01 17:19:14 by rloussig          #+#    #+#             */
-/*   Updated: 2023/12/04 12:15:11 by raphaellous      ###   ########.fr       */
+/*   Created: 2023/12/13 19:10:00 by fatoudiallo       #+#    #+#             */
+/*   Updated: 2023/12/13 19:10:01 by fatoudiallo      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

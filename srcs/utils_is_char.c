@@ -1,27 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   free_utils.c                                       :+:      :+:    :+:   */
+/*   utils_is_char.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fatdiall <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/13 18:23:50 by fatdiall          #+#    #+#             */
-/*   Updated: 2023/12/13 18:24:00 by fatdiall         ###   ########.fr       */
+/*   Created: 2023/12/19 17:44:42 by fatdiall          #+#    #+#             */
+/*   Updated: 2023/12/19 17:48:20 by fatdiall         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
-void	free_2d_char(char **arr)
+int	is_spaces(char c)
 {
-	int	i;
+	if (c == ' ' || c == '\t')
+		return (1);
+	return (0);
+}
 
-	i = 0;
-	while (arr[i])
-	{
-		free(arr[i]);
-		arr[i] = NULL;
-		i++;
-	}
-	free(arr);
+int	is_alpha_num(char c)
+{
+	if ((c >= '0' && c <= '9') || (c >= 'a' && c <= 'z')
+		|| (c >= 'A' && c <= 'Z'))
+		return (1);
+	return (0);
+}
+
+int	is_alpha(char c)
+{
+	if ((c >= 'a' && c <= 'z')
+		|| (c >= 'A' && c <= 'Z'))
+		return (1);
+	return (0);
 }

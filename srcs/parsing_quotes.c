@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_quotes.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rloussig <rloussig@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fatoudiallo <fatoudiallo@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/01 17:19:12 by rloussig          #+#    #+#             */
-/*   Updated: 2023/12/01 17:23:02 by rloussig         ###   ########.fr       */
+/*   Created: 2023/12/13 19:10:15 by fatoudiallo       #+#    #+#             */
+/*   Updated: 2023/12/13 19:10:16 by fatoudiallo      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
